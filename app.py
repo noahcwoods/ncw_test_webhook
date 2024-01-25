@@ -1,12 +1,14 @@
-from flask import Flask, request
+from flask import Flask, request, render_template
 import pandas as pd
 
 app = Flask(__name__)
+webhook_data = {}
 
 
 @app.route('/webhook', methods=['POST'])
 def respond():
     # Get the json data
+    global webhook_data
     webhook_data = request.json
 
     # Add data to a file
@@ -15,6 +17,11 @@ def respond():
 
     # return to acknowledge receipt of data
     return '', 200
+
+@app.route('/', methods=['GET', 'POST'])
+def index():
+    global webhook_data
+    return webhook_data
 
 
 if __name__ == '__main__':
