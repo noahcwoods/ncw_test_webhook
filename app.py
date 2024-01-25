@@ -18,7 +18,8 @@ def respond():
     # return to acknowledge receipt of data
     return '', 200
 
-@app.route('/', methods=['GET', 'POST'])
+
+@app.route('/')
 def index():
     global webhook_data
     return "Hello World!"
