@@ -21,7 +21,7 @@ def respond():
 @app.route('/', methods=['GET', 'POST'])
 def index():
     global webhook_data
-    return webhook_data
+    return "Hello World!"
 
 
 if __name__ == '__main__':
