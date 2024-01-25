@@ -22,7 +22,7 @@ def respond():
 @app.route('/')
 def index():
     global webhook_data
-    return "Hello World!"
+    return webhook_data
 
 
 if __name__ == '__main__':
