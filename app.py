@@ -1,4 +1,5 @@
 from flask import Flask, request
+import pandas as pd
 
 app = Flask(__name__)
 
@@ -8,8 +9,9 @@ def respond():
     # Get the json data
     webhook_data = request.json
 
-    # Print out the data
-    print(f"Received Data: {webhook_data}")
+    # Add data to a file
+    export_data = pd.DataFrame.from_dict(webhook_data)
+    export_data.to_csv('export.csv')
 
     # return to acknowledge receipt of data
     return '', 200
