@@ -1,21 +1,15 @@
+# app.py
+
 from flask import Flask, request
-import pandas as pd
 
 app = Flask(__name__)
 
-
 @app.route('/webhook', methods=['POST'])
-def respond():
-    # Get the json data
-    webhook_data = request.json
+def webhook():
+    if request.method == 'POST':
+        print("Data received from Webhook is: ", request.json)
+        return "Webhook received!"
 
-    # Add data to a file
-    export_data = pd.DataFrame.from_dict(webhook_data)
-    export_data.to_csv('export.csv')
-
-    # return to acknowledge receipt of data
-    return '', 200
-
-
+app.run(host='0.0.0.0', port=8000)
 if __name__ == '__main__':
     app.run()
